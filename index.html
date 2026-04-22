@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Langdon Mueller</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1a1a;
+      --paper: #f5f3ef;
+      --accent: #2c4a3e;
+      --muted: #888880;
+      --rule: #d8d4cc;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Mono', monospace;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 13px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 60px;
+      background: var(--paper);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--ink); }
+
+    /* HERO */
+    .hero {
+      padding: 180px 60px 120px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .hero-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(48px, 6vw, 80px);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-right {
+      padding-bottom: 8px;
+    }
+
+    .hero-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.9;
+      max-width: 360px;
+      margin-bottom: 40px;
+    }
+
+    .cta {
+      display: inline-block;
+      padding: 14px 32px;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .cta:hover {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    /* SERVICES */
+    #services {
+      padding: 100px 60px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 60px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--rule);
+    }
+
+    .service-card {
+      background: var(--paper);
+      padding: 60px 50px;
+    }
+
+    .service-num {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .service-card h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: var(--ink);
+    }
+
+    .service-card p {
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 12px;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 32px;
+    }
+
+    .tag {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border: 1px solid var(--rule);
+      color: var(--muted);
+    }
+
+    /* APPROACH */
+    #approach {
+      padding: 100px 60px;
+      border-bottom: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    #approach h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 300;
+      line-height: 1.2;
+      position: sticky;
+      top: 100px;
+    }
+
+    .approach-items { }
+
+    .approach-item {
+      padding: 32px 0;
+      border-top: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 24px;
+    }
+
+    .approach-item:last-child {
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .approach-num {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      padding-top: 3px;
+    }
+
+    .approach-item h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
+
+    .approach-item p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    /* CONTACT */
+    #contact {
+      padding: 100px 60px;
+      border-bottom: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    #contact h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 56px);
+      font-weight: 300;
+      line-height: 1.1;
+    }
+
+    #contact h2 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .contact-right p {
+      color: var(--muted);
+      margin-bottom: 28px;
+      line-height: 1.9;
+      font-size: 12px;
+    }
+
+    .contact-email {
+      display: inline-block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 4px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .contact-email:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* PRIVACY */
+    #privacy {
+      padding: 80px 60px;
+      background: #eeece7;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    #privacy h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 400;
+      margin-bottom: 40px;
+    }
+
+    .privacy-body {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .privacy-section h3 {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .privacy-section p {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 32px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    footer p {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    footer a:hover { color: var(--ink); }
+
+    .footer-reg {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      opacity: 0.7;
+    }
+
+    .footer-reg span {
+      display: inline-block;
+      margin-left: 20px;
+    }
+
+    .footer-reg span:first-child {
+      margin-left: 0;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 800px) {
+      nav { padding: 20px 24px; }
+      nav ul { display: none; }
+      .hero, #services .services-grid, #approach, #contact { grid-template-columns: 1fr; }
+      .hero { padding: 120px 24px 60px; gap: 40px; }
+      #services, #approach, #contact, #privacy { padding: 60px 24px; }
+      .privacy-body { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 10px; text-align: center; padding: 24px; }
+      .footer-reg span { display: block; margin-left: 0; margin-top: 4px; }
+    }
+
+    /* FADE IN */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-eyebrow, h1, .hero-desc, .cta {
+      animation: fadeUp 0.7s ease both;
+    }
+    .hero-eyebrow { animation-delay: 0.1s; }
+    h1            { animation-delay: 0.2s; }
+    .hero-desc    { animation-delay: 0.3s; }
+    .cta          { animation-delay: 0.4s; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="logo" href="#">Langdon Mueller</a>
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#privacy">Privacy</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Software &amp; Project Consultancy</p>
+      <h1>Delivering<br><em>clarity</em><br>at every<br>stage.</h1>
+    </div>
+    <div class="hero-right">
+      <p class="hero-desc">
+        Langdon Mueller partners with organisations to implement software solutions and lead complex projects — with precision, transparency, and a focus on outcomes that last.
+      </p>
+      <a href="#contact" class="cta">Get in touch</a>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <p class="section-label">What we do</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <p class="service-num">01</p>
+        <h2>Software<br>Implementation</h2>
+        <p>
+          We guide organisations through the full lifecycle of software adoption — from vendor selection and technical scoping through to deployment, integration, and post-launch support. We work across enterprise platforms, bespoke builds, and cloud migrations.
+        </p>
+        <div class="service-tags">
+          <span class="tag">System Integration</span>
+          <span class="tag">Cloud Migration</span>
+          <span class="tag">Enterprise Platforms</span>
+          <span class="tag">QA &amp; Testing</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <p class="service-num">02</p>
+        <h2>Project<br>Management</h2>
+        <p>
+          Experienced project leadership for technology and transformation programmes. We bring structure, clear communication, and accountability — keeping stakeholders aligned and initiatives on track from initiation through to successful delivery.
+        </p>
+        <div class="service-tags">
+          <span class="tag">Programme Delivery</span>
+          <span class="tag">Stakeholder Management</span>
+          <span class="tag">Agile &amp; Waterfall</span>
+          <span class="tag">Risk &amp; Governance</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section id="approach">
+    <h2>How we<br><em style="font-style:italic; color:var(--accent)">work</em></h2>
+    <div class="approach-items">
+      <div class="approach-item">
+        <span class="approach-num">01</span>
+        <div>
+          <h3>Understand first</h3>
+          <p>Every engagement begins with a thorough discovery phase. We take time to understand your systems, your team, and the outcomes you actually need — before making any recommendations.</p>
+        </div>
+      </div>
+      <div class="approach-item">
+        <span class="approach-num">02</span>
+        <div>
+          <h3>Clear ownership</h3>
+          <p>Ambiguity is the enemy of progress. We define roles, responsibilities, and decisions upfront — so your team knows who is accountable for what, and nothing falls through the cracks.</p>
+        </div>
+      </div>
+      <div class="approach-item">
+        <span class="approach-num">03</span>
+        <div>
+          <h3>Consistent communication</h3>
+          <p>We keep you informed at every step. Concise reporting, honest status updates, and proactive flagging of risks means there are no surprises — just steady forward momentum.</p>
+        </div>
+      </div>
+      <div class="approach-item">
+        <span class="approach-num">04</span>
+        <div>
+          <h3>Built to last</h3>
+          <p>We measure success not by delivery date alone, but by the durability of the outcome. Our implementations are documented, transferred, and supported so your team owns what comes next.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Let's work<br><em>together.</em></h2>
+    <div class="contact-right">
+      <p>
+        Whether you have a defined project scope or are still at the exploratory stage, we're happy to have a conversation. Reach out and we'll get back to you promptly.
+      </p>
+      <a class="contact-email" href="mailto:info@langdonmueller.com">info@langdonmueller.com</a>
+    </div>
+  </section>
+
+  <!-- PRIVACY -->
+  <section id="privacy">
+    <h2>Privacy Policy</h2>
+    <div class="privacy-body">
+      <div class="privacy-section">
+        <h3>Information we collect</h3>
+        <p>
+          Langdon Mueller collects only the personal information you provide voluntarily when contacting us — such as your name and email address. We do not collect data through tracking technologies or third-party analytics tools.
+        </p>
+      </div>
+      <div class="privacy-section">
+        <h3>How we use your information</h3>
+        <p>
+          Information you share with us is used solely to respond to your enquiry and, where relevant, to progress a business engagement. We do not sell, rent, or share your personal data with third parties for marketing purposes.
+        </p>
+      </div>
+      <div class="privacy-section">
+        <h3>Your rights &amp; contact</h3>
+        <p>
+          You have the right to access, correct, or request deletion of any personal data we hold about you. To exercise these rights or with any privacy-related questions, please contact us at <a href="mailto:info@langdonmueller.com" style="color:var(--ink)">info@langdonmueller.com</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 Langdon Mueller. All rights reserved.</p>
+    <p class="footer-reg">
+      <span>Registered in England &amp; Wales</span>
+      <span>Companies House: 17163019</span>
+      <span>D-U-N-S: 234757166</span>
+    </p>
+    <p><a href="#privacy">Privacy Policy</a></p>
+  </footer>
+
+</body>
+</html>
